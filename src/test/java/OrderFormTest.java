@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class OrderFormTest {
     private WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() { System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");}
+    static void setUpAll() { WebDriverManager.chromedriver().setup();}
 
     @BeforeEach
     void setUp() {
