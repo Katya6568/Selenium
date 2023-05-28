@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class OrderFormTest {
     private WebDriver driver;
@@ -13,7 +14,13 @@ public class OrderFormTest {
     static void setUpAll() { System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");}
 
     @BeforeEach
-    void setUp() { driver = new ChromeDriver(); }
+    void setUp() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
+    }
 
     @AfterEach
     void tearDown() {
