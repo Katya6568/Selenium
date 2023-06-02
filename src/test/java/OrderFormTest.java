@@ -200,4 +200,24 @@ public class OrderFormTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id= 'name'].input_invalid .input__sub")).getText().trim();
         assertEquals(expected, actual);
     }
+    @Test
+    void shouldBeFilledInNotOnlyName() throws InterruptedException {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id= 'name'] input")).sendKeys("Демченко Игнат");
+        driver.findElement(By.cssSelector("[data-test-id= 'agreement']")).click();
+        driver.findElement(By.tagName("button")).click();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id= 'phone'].input_invalid .input__sub")).getText().trim();
+        assertEquals(expected, actual);
+    }
+    @Test
+    void shouldBeFilledInNotOnlyPhone() throws InterruptedException {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id= 'phone'] input")).sendKeys("+78695414214");
+        driver.findElement(By.cssSelector("[data-test-id= 'agreement']")).click();
+        driver.findElement(By.tagName("button")).click();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id= 'name'].input_invalid .input__sub")).getText().trim();
+        assertEquals(expected, actual);
+    }
 }
